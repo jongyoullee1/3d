@@ -24,6 +24,24 @@
 void add_box( struct matrix * edges,
 	      double x, double y, double z,
 	      double width, double height, double depth ) {
+	
+  add_edge(edges, x, y, z, x + width, y, z);
+  add_edge(edges, x, y, z, x, y - height, z);
+  add_edge(edges, x, y, z, x, y, z - depth);
+	
+  add_edge(edges, x + width, y - height, z, x + width, y, z);
+  add_edge(edges, x + width, y - height, z, x, z - depth, z);
+  add_edge(edges, x + width, x + width, z, x + width, y - height, z - depth);
+	
+  add_edge(edges, x, y - height, z - depth, x, y - height, z);
+  add_edge(edges, x, y - height, z - depth, x + width, y1 = y - height, z - depth);
+  add_edge(edges, x, y - height, z - depth, x, y, z - depth);
+	
+  add_edge(edges, x + width, y, z - depth, x, y, z - depth);
+  add_edge(edges, x + width, y, z - depth, x + width, y - height, z - depth);
+  add_edge(edges, x + width, y, z - depth, x + width, y, z);
+	
+	
 }
 
 /*======== void add_sphere() ==========
@@ -42,7 +60,8 @@ void add_box( struct matrix * edges,
 void add_sphere( struct matrix * edges, 
 		 double cx, double cy, double cz,
 		 double r, double step ) {
-  return;
+ 
+	struct matrix * points = generate_sphere(cx, cy, cz, r, step);
 }
 
 /*======== void generate_sphere() ==========
