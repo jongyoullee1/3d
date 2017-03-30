@@ -61,7 +61,15 @@ void add_sphere( struct matrix * edges,
 		 double cx, double cy, double cz,
 		 double r, double step ) {
  
+	int i;
+	
 	struct matrix * points = generate_sphere(cx, cy, cz, r, step);
+	for (i = 0; i < points->lastcol; i++) {
+		x = points->m[0][i];
+		y = points->m[1][i];
+		z = points->m[2][i];
+		add_edge( edges, x, y, z, x + 1, y + 1, z + 1 );
+	}
 }
 
 /*======== void generate_sphere() ==========
